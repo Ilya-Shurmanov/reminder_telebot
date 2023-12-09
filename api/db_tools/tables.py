@@ -4,7 +4,6 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-# Define the todo item class
 class Users(Base):
     __tablename__ = 'users'
 
