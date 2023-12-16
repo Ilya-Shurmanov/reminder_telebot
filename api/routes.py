@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from models import User
+
+from api.models import User
+from api.db_tools.data_getter import get_user
 router = APIRouter()
 
 
@@ -15,6 +17,9 @@ async def create_item(user: User):
 #     return {"item_id": item_id, "q": q}
 
 
-@router.get("/users/")
-async def get_users():
-    return {"test ok"}
+@router.get("/users/{user_id}")
+async def get_users(user_id: int):
+    user = await get_user(user_id)
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return {"user_id": user.user_id, "user_name": user.user_name}

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
-from db_tools.configuration import db_file
+from api.db_tools.configuration import DB_FILE
 
 Base = declarative_base()
 
@@ -15,7 +15,7 @@ class Users(Base):
     telegram_id = Column(String)
 
 
-engine = create_engine(db_file, echo=True)
+engine = create_engine(DB_FILE, echo=True)
 
 
 # Create the table in the database

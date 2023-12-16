@@ -1,1 +1,1 @@
-db_file = 'sqlite:///todo.db'
+DB_FILE = 'sqlite:///todo.db'

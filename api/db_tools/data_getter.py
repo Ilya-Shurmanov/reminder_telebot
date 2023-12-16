@@ -1,20 +1,29 @@
 from sqlalchemy.orm import sessionmaker
 
-from tables import Users, engine
+from api.db_tools.tables import Users, engine
+
+
+Session = sessionmaker(bind=engine)
+
+
+async def get_user(id):
+    session = Session()
+    user = session.query(Users).filter_by(user_id=id).first()
+    session.close()
+    return user
 
 # Create a session
-Session = sessionmaker(bind=engine)
-session = Session()
+
 
 # Add a new task
-new_user = Users(user_name='Btest test', telegram_id='12')
-session.add(new_user)
-session.commit()
+# new_user = Users(user_name='Btest test', telegram_id='12')
+# session.add(new_user)
+# session.commit()
 
-# Query the tasks
-users = session.query(Users).all()
-for user in users:
-    print(user.user_id, user.user_name, user.telegram_id)
+# # Query the tasks
+# users = session.query(Users).all()
+# for user in users:
+#     print(user.user_id, user.user_name, user.telegram_id)
 
 # # Update a task
 # task_to_update = session.query(TodoItem).filter_by(task='Buy groceries').first()
@@ -27,4 +36,3 @@ for user in users:
 # session.commit()
 
 # Close the session when done
-session.close()

@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 class User(BaseModel):
-    id: int
-    username: str
-    email: str
+    user_id: int
+    user_name: str
+    is_admin: bool
+    telegram_id: str
