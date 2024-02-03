@@ -7,10 +7,9 @@ Session = sessionmaker(bind=engine)
 
 
 async def get_user(id):
-    session = Session()
-    user = session.query(Users).filter_by(user_id=id).first()
-    session.close()
-    return user
+    with Session() as session:
+        user = session.query(Users).filter_by(user_id=id).first()
+        return user
 
 # Create a session
 
@@ -26,12 +25,14 @@ async def get_user(id):
 #     print(user.user_id, user.user_name, user.telegram_id)
 
 # # Update a task
-# task_to_update = session.query(TodoItem).filter_by(task='Buy groceries').first()
+# task_to_update =
+# session.query(TodoItem).filter_by(task='Buy groceries').first()
 # task_to_update.completed = True
 # session.commit()
 
 # # Delete a task
-# task_to_delete = session.query(TodoItem).filter_by(task='Buy groceries').first()
+# task_to_delete =
+# session.query(TodoItem).filter_by(task='Buy groceries').first()
 # session.delete(task_to_delete)
 # session.commit()
 

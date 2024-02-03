@@ -10,8 +10,6 @@ app = FastAPI()
 
 app.include_router(router)
 
-# Additional configuration can go here, such as middleware, exception handlers, etc.
-
 # If you want to run the application directly
 if __name__ == "__main__":
     import uvicorn
